@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box1{
+                 width: 50px;
+                 height: 50px;
+                 background-color: rgb(22, 182, 129);
+                 border-radius: 50%;
+                 position: absolute;
+                 top: 50%;
+                 left: 50%;
+                 margin-top: -25px;
+                 margin-left: -25px;
+        }
+        .box2{
+                 width: 50px;
+                 height: 50px;
+                 background-color: rgb(93, 190, 255);
+                 border-radius: 50%;
+                 position: absolute;
+                 top: 50%;
+                 left: 50%;
+                 margin-top: -25px;
+                 margin-left: -25px;
+        }
+            .row{
+                  display: flex;
+                  justify-content: center;
+              }
+              .pad{
+                  position: fixed;
+                  bottom: 20px;
+                  right: 20px;
+                }
+                .item{
+                 width: 50px;
+                 height: 50px;
+                 border: 1px solid rgb(31, 30, 30);
+
+             }
+             .target{
+                 height: 50px;
+                 width: 50px;
+                background-color: rgb(235, 22, 22);
+                border-radius: 50%;
+                border: 10px double white;
+                position: absolute;
+                margin-left: -25px;
+                margin-top: -25px;
+                display: none;
+               
+             }
+    </style>
+</head>
+<body>
+    
+    <div class="wrap">
+        <div class="box1" id="box1"></div>
+        <div class="box2" id="box2"></div>
+        <div class="target" id="target"></div>
+    </div>
+    <div class="pad">
+        <div class="row">
+                <div class="item" id="topBtn"></div>
+        </div>
+        <div class="row">
+            <div class="item" id="leftBtn"></div>
+            <div class="item" id="colorBtn"></div>
+            <div class="item" id="rightBtn"></div>
+        </div>
+        <div class="row">
+            <div class="item" id="bottomBtn"></div>
+        </div>
+    </div>
+    <script>
+        let topPos1=50;
+        let leftPos1 = 50;
+        let topPos2=50;
+        let leftPos2 = 50;
+        let topTargetPos = Math.floor(Math.random()*100);
+        let leftTargetPos = Math.floor(Math.random()*100);
+        target.style.top = topTargetPos+'%';
+        target.style.left= leftTargetPos+'%';
+
+        colorBtn.onclick = function(){
+            
+            box1.style.backgroundColor= 'pink';
+        }
+        topBtn.onclick = function(){
+            topPos1-=1;
+            box1.style.top = topPos1+'%';
+        }
+        bottomBtn.onclick = function(){
+         topPos1+=1;
+         box1.style.top = topPos1+'%';
+         }
+         leftBtn.onclick = function(){
+         leftPos1-=1;
+         box1.style.left= leftPos1+'%';
+
+         }
+         
+         rightBtn.onclick = function(){
+         leftPos1+=1;
+         box1.style.left = leftPos1+'%';
+         }
+         document.body.onkeydown = function(e){
+             if(e.keyCode==38){
+                topPos1-=1;
+             box1.style.top = topPos1+'%';
+             checkWinner()
+             topBtn.style.backgroundColor='grey';
+             }else if (e.keyCode == 40){
+                topPos1+=1;
+               box1.style.top = topPos1+'%';
+               checkWinner()
+               bottomBtn.style.backgroundColor='grey';
+             }else if(e.keyCode ==37){
+                leftPos1-=1;
+                box1.style.left = leftPos1+'%';
+                checkWinner()
+                leftBtn.style.backgroundColor='grey';
+             }else if (e.keyCode==39){
+                leftPos1+=1;
+                box1.style.left = leftPos1+'%'; 
+                checkWinner()
+                rightBtn.style.backgroundColor='grey';
+            }else if(e.keyCode==87){
+                topPos2-=1;
+             box2.style.top = topPos2+'%';
+             checkWinner()
+             topBtn.style.backgroundColor='blue';
+             }else if (e.keyCode == 83){
+                topPos2+=1;
+               box2.style.top = topPos2+'%';
+               checkWinner()
+               bottomBtn.style.backgroundColor='blue';
+             }else if(e.keyCode ==65){
+                leftPos2-=1;
+                box2.style.left = leftPos2+'%';
+                checkWinner()
+                leftBtn.style.backgroundColor='blue';
+             }else if (e.keyCode==68){
+                leftPos2+=1;
+                box2.style.left = leftPos2+'%'; 
+                checkWinner()
+                rightBtn.style.backgroundColor='blue';
+            }
+         }
+         document.body.onkeyup = function(e){
+             if(e.keyCode==38){
+              
+             topBtn.style.backgroundColor='white';
+             }else if (e.keyCode == 40){
+               
+               bottomBtn.style.backgroundColor='white';
+             }else if(e.keyCode ==37){
+               
+              leftBtn.style.backgroundColor='white';
+             }else if (e.keyCode==39){
+           
+             rightBtn.style.backgroundColor='white';
+             }
+         
+         
+             if(e.keyCode==87){
+              
+             topBtn.style.backgroundColor='white';
+             }else if (e.keyCode == 83){
+               
+               bottomBtn.style.backgroundColor='white';
+             }else if(e.keyCode ==65){
+               
+              leftBtn.style.backgroundColor='white';
+             }else if (e.keyCode==68){
+           
+             rightBtn.style.backgroundColor='white';
+             }
+         }
+         setTimeout(function  (){
+             target.style.display='block';
+         },5000)
+         function checkWinner(){
+             if(topTargetPos == topPos1 && leftTargetPos ==leftPos1){
+                 alert('Winner is green');
+             }else if(topTargetPos == topPos2 && leftTargetPos==leftPos2){
+                 alert('Winner is blue');
+             }
+         }
+    </script>
+</body>
+</html>
